@@ -1,6 +1,6 @@
 # Cute Deferred Shading Implementation
 
-![](img/screenshot.png)
+![](img/screenshot.jpg)
 
 This is a cute little implementation of normal deferred shading. The
 focus of this implementation was readability and brevity, so that
@@ -44,3 +44,9 @@ where `sponza/` is the unpacked directory.
 Camera controls for the demo: `w` and `s` to walk forward and
 backward. `a` and `d` to stride. `o` and `l` to fly. Hold in `m` to go
 faster. Use the mouse to rotate the camera.
+
+## More Awesome Images
+
+![](img/screenshot2.jpg)
+![](img/screenshot3.jpg)
+![](img/screenshot4.jpg)
