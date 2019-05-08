@@ -627,17 +627,18 @@ void CreateSphere() {
 // configure a shader for usage in deferred rendering.
 void SetupDeferredShader(GLuint shader) {
     // bind gbuffer textures.
-    GL_C(glUniform1i(glGetUniformLocation(shader, "uColorTex"), 0));
+
     GL_C(glActiveTexture(GL_TEXTURE0 + 0));
     GL_C(glBindTexture(GL_TEXTURE_2D, colorTexture));
+    GL_C(glUniform1i(glGetUniformLocation(shader, "uColorTex"), 0));
 
-    GL_C(glUniform1i(glGetUniformLocation(shader, "uNormalTex"), 1));
     GL_C(glActiveTexture(GL_TEXTURE0 + 1));
     GL_C(glBindTexture(GL_TEXTURE_2D, normalTexture));
+    GL_C(glUniform1i(glGetUniformLocation(shader, "uNormalTex"), 1));
 
-    GL_C(glUniform1i(glGetUniformLocation(shader, "uPositionTex"), 2));
     GL_C(glActiveTexture(GL_TEXTURE0 + 2));
     GL_C(glBindTexture(GL_TEXTURE_2D, positionTexture));
+    GL_C(glUniform1i(glGetUniformLocation(shader, "uPositionTex"), 2));
 
     GL_C(glUniform3f(glGetUniformLocation(shader, "uCameraPos"), camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z));
 }
@@ -696,9 +697,9 @@ void Render() {
 
         Material mat = materials[mesh->matId];
         if (mat.diffuseTexFile != "") {
-            GL_C(glBindTexture(GL_TEXTURE_2D, mat.diffuseTex));
             GL_C(glActiveTexture(GL_TEXTURE0));
-            GL_C(glUniform1i(glGetUniformLocation(outputGeoShader, "uDiffTex"), 0));
+            GL_C(glBindTexture(GL_TEXTURE_2D, mat.diffuseTex));
+	    GL_C(glUniform1i(glGetUniformLocation(outputGeoShader, "uDiffTex"), 0));
         }
 
         glDrawArrays(GL_TRIANGLES, 0, mesh->positions.size());
